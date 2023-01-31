@@ -1,0 +1,41 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block head %} 
+<link rel="stylesheet" href="{% static 'css/stylesmainn.css'%}" class="css">
+<link rel="stylesheet" href="{% static 'css/stylesReg.css'%}" class="css">
+{% endblock %}
+
+{% block titulo %} Login {% endblock %}
+
+{% block contenido %}
+    <main>
+        <form class="container-m2" method="post">
+            {% csrf_token %}
+            <h2>Inicio de sesion</h2>
+                <div class="form-group mb-3">
+                <label for="exampleInputEmail1" class="form-label">Dirección de correo</label>
+                <input type="text" class="form-control" name="email"> 
+            </div>
+            <div class="mb-3">
+                <label for="exampleInputPassword1" class="form-label">Contraseña</label>
+                <input type="password" class="form-control" id="exampleInputPassword1" name="password">
+            </div>
+            <button type="submit" class="btn btn-primary">Ingresar</button>
+        </form>
+        {% if messages %}
+                {% for message in messages %}
+                    {% if message.tags == 'danger' %}
+                    <div class="alert alert-success">
+                        <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
+                        {{ message }}
+                    </div>
+                    {% else %}
+                    <div class="alert alert-danger">
+                        <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
+                        {{ message }}
+                    </div>
+                    {% endif %}
+                {% endfor %}
+            {% endif %}
+    </main>
+{% endblock %}

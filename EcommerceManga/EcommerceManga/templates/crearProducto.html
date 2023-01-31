@@ -1,0 +1,9 @@
+{% extends 'base.html' %}
+
+{% block titulo %} Agregar mangas {% endblock %}
+
+{% block contenido %}
+    {% if user.is_authenticated and user.is_admin %}
+        {% include 'formCatalogo.html'  %} 
+    {% endif %}
+{% endblock %}
